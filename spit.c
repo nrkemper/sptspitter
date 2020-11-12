@@ -359,10 +359,6 @@ byte *GetData24BitsPerPixel (bitmapfile_t *bmpfile, bitmapinfo_t *bmpinfo, byte 
         
         for (i=0, x=0; x<nocolours; i+=3, x++)
         {
-                printf ("Colour:        %d\n", x);
-                printf ("R:             %d\n", palette.data[x].r);
-                printf ("G:             %d\n", palette.data[x].g);
-                printf ("B:             %d\n", palette.data[x].b);
                 *(ret + offset + i)     = palette.data[x].r;
                 *(ret + offset + i + 1) = palette.data[x].g;
                 *(ret + offset + i + 2) = palette.data[x].b;
@@ -378,7 +374,7 @@ byte *GetData24BitsPerPixel (bitmapfile_t *bmpfile, bitmapinfo_t *bmpinfo, byte 
                 *(ret + offset + i + 2) = *(bmpdata + i + 2);   //b
         }
         
-        *(ret + 19) = LittleEndian() ? size : ByteSwap4(size);
+        *(int *)(ret + 19) = LittleEndian() ? size : ByteSwap4(size);
         
         //fill the sprite file header
         sptfilehret->filetype[0] = 'S';

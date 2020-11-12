@@ -22,7 +22,7 @@
 #define         true            1
 
 typedef         int8_t          bool;
-typedef         int8_t          byte;
+typedef         uint8_t         byte;
 typedef         int8_t          boolean_t;
 
 typedef struct bitmapfile_s
